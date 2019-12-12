@@ -8,7 +8,7 @@ def home():
     return render_template('home.html')
 
 ############################
-### Lab Part 1: JSON 
+### Lab Part 1: JSON #######
 ############################
 
 @app.route('/movie')
@@ -20,7 +20,10 @@ def movies():
                     "image_url": "https://ksassets.timeincuk.net/wp/uploads/sites/55/2018/02/KXC1W2-920x584.jpg"
                     }
                     """
-    return render_template('movie.html', movie={})
+
+    parsed_json = json.loads(json_string)
+    
+    return render_template('movie.html', movie= parsed_json)
 
 
 @app.route('/tvshows')
