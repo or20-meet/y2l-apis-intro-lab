@@ -22,7 +22,7 @@ def movies():
                     """
 
     parsed_json = json.loads(json_string)
-    
+
     return render_template('movie.html', movie= parsed_json)
 
 
@@ -69,15 +69,10 @@ def tv_shows():
 ############################
 @app.route('/dogs')
 def dog_breeds():
-    """
-    If you visit https://dog.ceo/api/breeds/list/all 
-    a list of all dog breeds is returned. Try this in your browser! (Chrome/firefox)
+    response = requests.get(" https://dog.ceo/api/breeds/list/all")
+    parsed_content = json.loads(response.content)
 
-    Using the `requests` library (as shown in the slides)
-    Do a GET request to the link above to get all dog breeds and return them
-    to them as a list to the user as a bullet pointed list
-    """
-    return render_template('dogs.html')
+    return render_template('dogs.html', dogs = parsed_content["message"])
 
 if __name__ == '__main__':
     app.run(debug=True)
